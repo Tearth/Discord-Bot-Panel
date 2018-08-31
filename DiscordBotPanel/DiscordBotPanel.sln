@@ -3,9 +3,11 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio 15
 VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBotPanel.Backend", "DiscordBotPanel.Backend\DiscordBotPanel.Backend.csproj", "{EA31B292-D554-454B-BE72-E20E91A00B77}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordBotPanel.Backend", "DiscordBotPanel.Backend\DiscordBotPanel.Backend.csproj", "{EA31B292-D554-454B-BE72-E20E91A00B77}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBotPanel.Frontend", "DiscordBotPanel.Frontend\DiscordBotPanel.Frontend.csproj", "{AF6EF8D0-2C9D-4950-B6DC-2EBEF1E92FA2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordBotPanel.Frontend", "DiscordBotPanel.Frontend\DiscordBotPanel.Frontend.csproj", "{AF6EF8D0-2C9D-4950-B6DC-2EBEF1E92FA2}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBotPanel.Backend.Tests", "DiscordBotPanel.Backend.Tests\DiscordBotPanel.Backend.Tests.csproj", "{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -21,6 +23,10 @@ Global
 		{AF6EF8D0-2C9D-4950-B6DC-2EBEF1E92FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{AF6EF8D0-2C9D-4950-B6DC-2EBEF1E92FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{AF6EF8D0-2C9D-4950-B6DC-2EBEF1E92FA2}.Release|Any CPU.Build.0 = Release|Any CPU
+		{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
