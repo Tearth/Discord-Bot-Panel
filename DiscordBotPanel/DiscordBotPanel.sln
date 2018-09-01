@@ -9,6 +9,8 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordBotPanel.Frontend", 
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBotPanel.Backend.Tests", "DiscordBotPanel.Backend.Tests\DiscordBotPanel.Backend.Tests.csproj", "{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBotPanel.Backend.DAL", "DiscordBotPanel.Backend.DAL\DiscordBotPanel.Backend.DAL.csproj", "{26437CA5-56CE-47F1-B0D4-6B9D4347D792}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,6 +29,10 @@ Global
 		{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}.Release|Any CPU.Build.0 = Release|Any CPU
+		{26437CA5-56CE-47F1-B0D4-6B9D4347D792}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{26437CA5-56CE-47F1-B0D4-6B9D4347D792}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{26437CA5-56CE-47F1-B0D4-6B9D4347D792}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{26437CA5-56CE-47F1-B0D4-6B9D4347D792}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
