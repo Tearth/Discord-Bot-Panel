@@ -5,8 +5,6 @@ VisualStudioVersion = 15.0.27703.2047
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordBotPanel.Backend", "DiscordBotPanel.Backend\DiscordBotPanel.Backend.csproj", "{EA31B292-D554-454B-BE72-E20E91A00B77}"
 EndProject
-Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "DiscordBotPanel.Frontend", "DiscordBotPanel.Frontend\DiscordBotPanel.Frontend.csproj", "{AF6EF8D0-2C9D-4950-B6DC-2EBEF1E92FA2}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBotPanel.Backend.Tests", "DiscordBotPanel.Backend.Tests\DiscordBotPanel.Backend.Tests.csproj", "{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "DiscordBotPanel.Backend.DAL", "DiscordBotPanel.Backend.DAL\DiscordBotPanel.Backend.DAL.csproj", "{26437CA5-56CE-47F1-B0D4-6B9D4347D792}"
@@ -21,10 +19,6 @@ Global
 		{EA31B292-D554-454B-BE72-E20E91A00B77}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{EA31B292-D554-454B-BE72-E20E91A00B77}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{EA31B292-D554-454B-BE72-E20E91A00B77}.Release|Any CPU.Build.0 = Release|Any CPU
-		{AF6EF8D0-2C9D-4950-B6DC-2EBEF1E92FA2}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
-		{AF6EF8D0-2C9D-4950-B6DC-2EBEF1E92FA2}.Debug|Any CPU.Build.0 = Debug|Any CPU
-		{AF6EF8D0-2C9D-4950-B6DC-2EBEF1E92FA2}.Release|Any CPU.ActiveCfg = Release|Any CPU
-		{AF6EF8D0-2C9D-4950-B6DC-2EBEF1E92FA2}.Release|Any CPU.Build.0 = Release|Any CPU
 		{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
 		{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{C3F7F6B4-00B2-4B6F-A9BE-CC9A5875A83B}.Release|Any CPU.ActiveCfg = Release|Any CPU
