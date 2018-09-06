@@ -2,8 +2,10 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
+using DiscordBotPanel.Backend.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Logging;
@@ -24,6 +26,9 @@ namespace DiscordBotPanel.Backend
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddMvc();
+
+            var connectionString = Configuration.GetConnectionString("DefaultConnection");
+            services.AddDbContext<DatabaseContext>(options => options.UseSqlite(connectionString));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -34,7 +39,16 @@ namespace DiscordBotPanel.Backend
                 app.UseDeveloperExceptionPage();
             }
 
+            using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
+            {
+                var context = serviceScope.ServiceProvider.GetService<DatabaseContext> ();
+
+                context.Database.EnsureCreated();
+                context.Database.Migrate();
+            }
+
             app.UseMvc();
+            app.UseDefaultFiles()
         }
     }
 }
