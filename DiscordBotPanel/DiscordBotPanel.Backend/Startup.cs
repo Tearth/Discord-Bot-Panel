@@ -48,7 +48,6 @@ namespace DiscordBotPanel.Backend
             }
 
             app.UseMvc();
-            app.UseDefaultFiles()
         }
     }
 }
