@@ -7,13 +7,17 @@ using Microsoft.AspNetCore;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.Logging;
+using NLog;
 
 namespace DiscordBotPanel.Backend
 {
     public class Program
     {
+        private static Logger _logger = LogManager.GetCurrentClassLogger();
+
         public static void Main(string[] args)
         {
+            _logger.Info("Starting Discord Bot Panel...");
             BuildWebHost(args).Run();
         }
 
