@@ -1,7 +1,9 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
+using AutoMapper;
 using DiscordBotPanel.Backend.DAL;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -48,11 +50,13 @@ namespace DiscordBotPanel.Backend
 
             using (var serviceScope = app.ApplicationServices.GetRequiredService<IServiceScopeFactory>().CreateScope())
             {
-                var context = serviceScope.ServiceProvider.GetService<DatabaseContext> ();
+                var context = serviceScope.ServiceProvider.GetService<DatabaseContext>();
 
                 context.Database.EnsureCreated();
                 context.Database.Migrate();
             }
+
+            Mapper.Initialize(cfg => cfg.AddProfiles(GetType().Assembly));
 
             app.UseMvc();
         }
