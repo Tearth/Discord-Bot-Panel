@@ -10,6 +10,8 @@ namespace DiscordBotPanel.Backend.DAL
     public class DatabaseContext : DbContext
     {
         public virtual DbSet<BotModel> Bots { get; set; }
+        public virtual DbSet<GuildModel> Guilds { get; set; }
+        public virtual DbSet<CommandExecutionModel> Commands { get; set; }
 
         public DatabaseContext()
         {
