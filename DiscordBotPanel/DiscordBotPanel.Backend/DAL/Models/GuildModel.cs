@@ -9,6 +9,7 @@ namespace DiscordBotPanel.Backend.DAL.Models
     {
         public ulong Id { get; set; }
         public DateTime CreateTime { get; set; }
+        public string Name { get; set; }
 
         public ulong BotId { get; set; }
         public virtual BotModel Bot { get; set; }
