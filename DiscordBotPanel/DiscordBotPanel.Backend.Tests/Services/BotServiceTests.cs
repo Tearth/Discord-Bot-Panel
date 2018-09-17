@@ -22,7 +22,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
         {
             var databaseContext = DatabaseFactory.Create();
             var timeProvider = TimeProviderFactory.Create();
-            var botService = new BotService(databaseContext, timeProvider);
+            var botService = new BotsService(databaseContext, timeProvider);
 
             var bot = new RegisterBotDTO
             {
@@ -44,7 +44,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
         {
             var databaseContext = DatabaseFactory.Create();
             var timeProvider = TimeProviderFactory.Create();
-            var botService = new BotService(databaseContext, timeProvider);
+            var botService = new BotsService(databaseContext, timeProvider);
 
             databaseContext.Bots.Add(new BotModel
             {

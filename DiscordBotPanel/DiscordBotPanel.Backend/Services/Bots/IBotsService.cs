@@ -6,7 +6,7 @@ using DiscordBotPanel.Backend.DTO;
 
 namespace DiscordBotPanel.Backend.Services.Bots
 {
-    public interface IBotService
+    public interface IBotsService
     {
         bool RegisterBot(RegisterBotDTO registerBotDto);
     }

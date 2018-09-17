@@ -10,12 +10,12 @@ using DiscordBotPanel.Backend.Helpers.Time;
 
 namespace DiscordBotPanel.Backend.Services.Bots
 {
-    public class BotService : IBotService
+    public class BotsService : IBotsService
     {
         private DatabaseContext _databaseContext;
         private ITimeProvider _timeProvider;
 
-        public BotService(DatabaseContext databaseContext, ITimeProvider timeProvider)
+        public BotsService(DatabaseContext databaseContext, ITimeProvider timeProvider)
         {
             _databaseContext = databaseContext;
             _timeProvider = timeProvider;
