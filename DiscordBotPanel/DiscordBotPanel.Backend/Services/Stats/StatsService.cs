@@ -7,6 +7,7 @@ using DiscordBotPanel.Backend.DAL;
 using DiscordBotPanel.Backend.DAL.Models;
 using DiscordBotPanel.Backend.DTO;
 using DiscordBotPanel.Backend.Helpers.Time;
+using Microsoft.EntityFrameworkCore;
 
 namespace DiscordBotPanel.Backend.Services.Stats
 {
@@ -35,6 +36,17 @@ namespace DiscordBotPanel.Backend.Services.Stats
             _databaseContext.SaveChanges();
 
             return true;
+        }
+
+        public List<LogStatsDTO> GetStatsForBot(ulong botId)
+        {
+            var bot = _databaseContext.Bots.Include(p => p.Stats).FirstOrDefault(p => p.Id == botId);
+            if (bot == null)
+            {
+                return null;
+            }
+
+            return Mapper.Map<List<LogStatsDTO>>(bot.Stats);
         }
     }
 }

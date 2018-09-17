@@ -72,5 +72,45 @@ namespace DiscordBotPanel.Backend.Tests.Services
             Assert.False(result);
             Assert.Equal(0, databaseContext.Stats.Count());
         }
+
+        [Fact]
+        public void GetStatsForBot_ExistingBot_ShouldReturnListOfStats()
+        {
+            var databaseContext = DatabaseFactory.Create();
+            var timeProvider = TimeProviderFactory.Create();
+            var statsService = new StatsService(databaseContext, timeProvider);
+
+            databaseContext.Bots.Add(new BotModel
+            {
+                Id = 1,
+                Name = "Bot1",
+                Stats = new List<StatsModel>
+                {
+                    new StatsModel {BotId = 1, CreateTime = DateTime.Now, ExecutedCommandsCount = 1001 },
+                    new StatsModel {BotId = 1, CreateTime = DateTime.Now, ExecutedCommandsCount = 1002 },
+                    new StatsModel {BotId = 1, CreateTime = DateTime.Now, ExecutedCommandsCount = 1003 }
+                }
+            });
+            databaseContext.SaveChanges();
+
+            var result = statsService.GetStatsForBot(1);
+
+            Assert.Equal(3, result.Count);
+            Assert.Equal(1001, result[0].ExecutedCommandsCount);
+            Assert.Equal(1002, result[1].ExecutedCommandsCount);
+            Assert.Equal(1003, result[2].ExecutedCommandsCount);
+        }
+
+        [Fact]
+        public void GetStatsForBot_NonExistingBot_ShouldReturnNull()
+        {
+            var databaseContext = DatabaseFactory.Create();
+            var timeProvider = TimeProviderFactory.Create();
+            var statsService = new StatsService(databaseContext, timeProvider);
+
+            var result = statsService.GetStatsForBot(0);
+
+            Assert.Null(result);
+        }
     }
 }
