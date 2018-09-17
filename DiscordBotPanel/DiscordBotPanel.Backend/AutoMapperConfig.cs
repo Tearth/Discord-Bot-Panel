@@ -13,6 +13,7 @@ namespace DiscordBotPanel.Backend
         public AutoMapperConfig()
         {
             CreateMap<RegisterBotDTO, BotModel>().ReverseMap();
+            CreateMap<LogStatsDTO, StatsModel>().ForMember(p => p.BotId, p => p.MapFrom(w => w.BotId)).ReverseMap();
         }
     }
 }
