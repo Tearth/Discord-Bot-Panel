@@ -10,11 +10,11 @@ using Xunit;
 
 namespace DiscordBotPanel.Backend.Tests.Services
 {
-    public class BotServiceTests
+    public class BotsServiceTests
     {
-        public BotServiceTests()
+        public BotsServiceTests()
         {
-            AutomapperHelper.Init();
+            AutoMapperHelper.Init();
         }
 
         [Fact]
@@ -36,6 +36,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
             Assert.True(result);
             Assert.Equal(1, databaseContext.Bots.Count());
             Assert.Equal(1000ul, registeredBot.Id);
+            Assert.Equal("Bot1", registeredBot.Name);
             Assert.Equal(timeProvider.Get(), registeredBot.CreateTime);
         }
 
