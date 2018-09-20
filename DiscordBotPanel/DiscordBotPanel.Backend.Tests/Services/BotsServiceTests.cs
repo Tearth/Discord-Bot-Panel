@@ -18,6 +18,36 @@ namespace DiscordBotPanel.Backend.Tests.Services
         }
 
         [Fact]
+        public void IsBotRegistered_ExistingBot_ShouldReturnTrue()
+        {
+            var databaseContext = DatabaseFactory.Create();
+            var timeProvider = TimeProviderFactory.Create();
+            var botService = new BotsService(databaseContext, timeProvider);
+
+            databaseContext.Bots.Add(new BotModel
+            {
+                Id = 1000,
+                Name = "Bot1",
+                CreateTime = DateTime.Now
+            });
+            databaseContext.SaveChanges();
+
+            var result = botService.IsBotRegistered(1000);
+            Assert.True(result);
+        }
+
+        [Fact]
+        public void IsBotRegistered_NonExistingBot_ShouldReturnTrue()
+        {
+            var databaseContext = DatabaseFactory.Create();
+            var timeProvider = TimeProviderFactory.Create();
+            var botService = new BotsService(databaseContext, timeProvider);
+
+            var result = botService.IsBotRegistered(1000);
+            Assert.False(result);
+        }
+
+        [Fact]
         public void RegisterBot_NonExistingBot_ShouldReturnSuccessAndSaveInDatabase()
         {
             var databaseContext = DatabaseFactory.Create();

@@ -21,6 +21,11 @@ namespace DiscordBotPanel.Backend.Services.Bots
             _timeProvider = timeProvider;
         }
 
+        public bool IsBotRegistered(ulong botId)
+        {
+            return _databaseContext.Bots.Any(p => p.Id == botId);
+        }
+
         public RegisterResult RegisterBot(RegisterBotDTO registerBotDto)
         {
             if (_databaseContext.Bots.Any(p => p.Id == registerBotDto.Id))
