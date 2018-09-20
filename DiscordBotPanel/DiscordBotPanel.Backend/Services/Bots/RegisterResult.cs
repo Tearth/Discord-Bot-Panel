@@ -2,12 +2,12 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
-using DiscordBotPanel.Backend.DTO;
 
 namespace DiscordBotPanel.Backend.Services.Bots
 {
-    public interface IBotsService
+    public enum RegisterResult
     {
-        RegisterResult RegisterBot(RegisterBotDTO registerBotDto);
+        Success,
+        DuplicatedIdError
     }
 }

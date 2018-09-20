@@ -21,11 +21,11 @@ namespace DiscordBotPanel.Backend.Services.Bots
             _timeProvider = timeProvider;
         }
 
-        public bool RegisterBot(RegisterBotDTO registerBotDto)
+        public RegisterResult RegisterBot(RegisterBotDTO registerBotDto)
         {
             if (_databaseContext.Bots.Any(p => p.Id == registerBotDto.Id))
             {
-                return false;
+                return RegisterResult.DuplicatedIdError;
             }
 
             var botModel = Mapper.Map<BotModel>(registerBotDto);
@@ -34,7 +34,7 @@ namespace DiscordBotPanel.Backend.Services.Bots
             _databaseContext.Bots.Add(botModel);
             _databaseContext.SaveChanges();
 
-            return true;
+            return RegisterResult.Success;
         }
     }
 }

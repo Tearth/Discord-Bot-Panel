@@ -23,12 +23,13 @@ namespace DiscordBotPanel.Backend.Controllers
         [HttpPost]
         public ActionResult RegisterBot([FromBody] RegisterBotDTO registerBotDto)
         {
-            if (_botsService.RegisterBot(registerBotDto))
+            var registerResult = _botsService.RegisterBot(registerBotDto);
+            if (registerResult == RegisterResult.DuplicatedIdError)
             {
-                return Json(new RequestResultDTO(true));
+                return Json(new RequestResultDTO(false, "Bot already registered."));
             }
 
-            return Json(new RequestResultDTO(false, "Bot already registered."));
+            return Json(new RequestResultDTO(true));
         }
     }
 }

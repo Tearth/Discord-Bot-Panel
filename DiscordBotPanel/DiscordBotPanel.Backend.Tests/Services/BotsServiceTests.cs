@@ -18,7 +18,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
         }
 
         [Fact]
-        public void RegisterBot_NonExistingBot_ShouldReturnTrueAndSaveInDatabase()
+        public void RegisterBot_NonExistingBot_ShouldReturnSuccessAndSaveInDatabase()
         {
             var databaseContext = DatabaseFactory.Create();
             var timeProvider = TimeProviderFactory.Create();
@@ -33,7 +33,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
             var result = botService.RegisterBot(bot);
             var registeredBot = databaseContext.Bots.First();
 
-            Assert.True(result);
+            Assert.Equal(RegisterResult.Success, result);
             Assert.Equal(1, databaseContext.Bots.Count());
             Assert.Equal(1000ul, registeredBot.Id);
             Assert.Equal("Bot1", registeredBot.Name);
@@ -41,7 +41,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
         }
 
         [Fact]
-        public void RegisterBot_ExistingBot_ShouldReturnFalse()
+        public void RegisterBot_ExistingBot_ShouldReturnDuplicatedIdError()
         {
             var databaseContext = DatabaseFactory.Create();
             var timeProvider = TimeProviderFactory.Create();
@@ -63,7 +63,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             var result = botService.RegisterBot(bot);
 
-            Assert.False(result);
+            Assert.Equal(RegisterResult.DuplicatedIdError, result);
             Assert.Equal(1, databaseContext.Bots.Count());
         }
     }
