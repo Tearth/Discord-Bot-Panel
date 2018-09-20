@@ -5,6 +5,10 @@ using System.Reflection;
 using System.Threading.Tasks;
 using AutoMapper;
 using DiscordBotPanel.Backend.DAL;
+using DiscordBotPanel.Backend.DAL.Models;
+using DiscordBotPanel.Backend.Helpers.Time;
+using DiscordBotPanel.Backend.Services.Bots;
+using DiscordBotPanel.Backend.Services.Stats;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
@@ -36,6 +40,9 @@ namespace DiscordBotPanel.Backend
 
             var connectionString = Configuration.GetConnectionString("DefaultConnection");
             services.AddDbContext<DatabaseContext>(options => options.UseSqlite(connectionString));
+            services.AddScoped<IBotsService, BotsService>();
+            services.AddScoped<IStatsService, StatsService>();
+            services.AddScoped<ITimeProvider, TimeProvider>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
