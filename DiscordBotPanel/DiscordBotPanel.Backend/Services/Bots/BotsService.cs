@@ -26,6 +26,17 @@ namespace DiscordBotPanel.Backend.Services.Bots
             return _databaseContext.Bots.Any(p => p.Id == botId);
         }
 
+        public BotDTO GetBot(ulong botId)
+        {
+            var botModel = _databaseContext.Bots.FirstOrDefault(p => p.Id == botId);
+            if (botModel == null)
+            {
+                return null;
+            }
+
+            return Mapper.Map<BotDTO>(botModel);
+        }
+
         public RegisterResult RegisterBot(RegisterBotDTO registerBotDto)
         {
             if (_databaseContext.Bots.Any(p => p.Id == registerBotDto.Id))

@@ -9,6 +9,7 @@ namespace DiscordBotPanel.Backend.Services.Bots
     public interface IBotsService
     {
         bool IsBotRegistered(ulong botId);
+        BotDTO GetBot(ulong botId);
         RegisterResult RegisterBot(RegisterBotDTO registerBotDto);
     }
 }
