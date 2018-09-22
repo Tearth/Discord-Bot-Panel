@@ -23,7 +23,14 @@ namespace DiscordBotPanel.Backend.Controllers
         [HttpGet("{botId}")]
         public ActionResult GetBot(ulong botId)
         {
+            var bot = _botsService.GetBot(botId);
+            if (bot == null)
+            {
+                Response.StatusCode = 404;
+                return Json(new object());
+            }
 
+            return Json(bot);
         }
 
         [HttpPost]
