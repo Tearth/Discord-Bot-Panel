@@ -13,23 +13,36 @@ namespace DiscordBotPanel.Backend.Controllers
     [Route("api/stats")]
     public class StatsController : Controller
     {
-        private IStatsService _statsController;
+        private IStatsService _statsService;
 
-        public StatsController(IStatsService statsController)
+        public StatsController(IStatsService statsService)
         {
-            _statsController = statsController;
+            _statsService = statsService;
         }
 
         [HttpGet("{botId}")]
         public ActionResult GetStatsForBot(ulong botId)
         {
-            var stats = _statsController.GetStatsForBot(botId);
+            var stats = _statsService.GetStatsForBot(botId);
             if (stats == null)
             {
+                Response.StatusCode = 404;
                 return Json(new RequestResultDTO(false, "No bot with this id,"));
             }
 
             return Json(stats);
+        }
+
+        [HttpPost]
+        public ActionResult Log([FromBody] LogStatsDTO logStatsDto)
+        {
+            if (!_statsService.Log(logStatsDto))
+            {
+                Response.StatusCode = 404;
+                return Json(new RequestResultDTO(false, "Can't log data, check if bot is registered."));
+            }
+
+            return Json(new RequestResultDTO(true));
         }
     }
 }
