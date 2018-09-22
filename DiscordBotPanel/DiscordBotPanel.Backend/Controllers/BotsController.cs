@@ -27,7 +27,7 @@ namespace DiscordBotPanel.Backend.Controllers
             if (bot == null)
             {
                 Response.StatusCode = 404;
-                return Json(new object());
+                return Json(new RequestResultDTO(false, "No bot with this id."));
             }
 
             return Json(bot);
@@ -38,11 +38,13 @@ namespace DiscordBotPanel.Backend.Controllers
         {
             if (_botsService.IsBotRegistered(registerBotDto.Id))
             {
+                Response.StatusCode = 404;
                 return Json(new RequestResultDTO(false, "Bot already registered."));
             }
 
             if (_botsService.RegisterBot(registerBotDto) != RegisterResult.Success)
             {
+                Response.StatusCode = 404;
                 return Json(new RequestResultDTO(false, "Internal RegisterBot error."));
             }
 
