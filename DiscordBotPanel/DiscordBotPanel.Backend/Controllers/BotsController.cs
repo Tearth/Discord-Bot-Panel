@@ -8,7 +8,7 @@ namespace DiscordBotPanel.Backend.Controllers
     [Route("api/bots")]
     public class BotsController : Controller
     {
-        private IBotsService _botsService;
+        private readonly IBotsService _botsService;
 
         public BotsController(IBotsService botsService)
         {

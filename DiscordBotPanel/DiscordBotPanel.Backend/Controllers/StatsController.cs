@@ -8,7 +8,7 @@ namespace DiscordBotPanel.Backend.Controllers
     [Route("api/stats")]
     public class StatsController : Controller
     {
-        private IStatsService _statsService;
+        private readonly IStatsService _statsService;
 
         public StatsController(IStatsService statsService)
         {

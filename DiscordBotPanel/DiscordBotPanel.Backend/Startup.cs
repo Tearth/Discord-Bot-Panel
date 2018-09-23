@@ -14,7 +14,7 @@ namespace DiscordBotPanel.Backend
 {
     public class Startup
     {
-        private Logger _logger = LogManager.GetCurrentClassLogger();
+        private readonly Logger _logger = LogManager.GetCurrentClassLogger();
 
         public Startup(IConfiguration configuration)
         {

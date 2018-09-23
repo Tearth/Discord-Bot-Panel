@@ -9,8 +9,8 @@ namespace DiscordBotPanel.Backend.Services.Bots
 {
     public class BotsService : IBotsService
     {
-        private DatabaseContext _databaseContext;
-        private ITimeProvider _timeProvider;
+        private readonly DatabaseContext _databaseContext;
+        private readonly ITimeProvider _timeProvider;
 
         public BotsService(DatabaseContext databaseContext, ITimeProvider timeProvider)
         {

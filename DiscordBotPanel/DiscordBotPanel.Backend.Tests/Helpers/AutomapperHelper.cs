@@ -5,16 +5,16 @@ namespace DiscordBotPanel.Backend.Tests.Helpers
     public static class AutoMapperHelper
     {
         private static bool _initDone;
-        private static object _mapperInitLock;
+        private static readonly object MapperInitLock;
 
         static AutoMapperHelper()
         {
-            _mapperInitLock = new object();
+            MapperInitLock = new object();
         }
 
         public static void Init()
         {
-            lock (_mapperInitLock)
+            lock (MapperInitLock)
             {
                 if (!_initDone)
                 {

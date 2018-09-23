@@ -11,8 +11,8 @@ namespace DiscordBotPanel.Backend.Services.Stats
 {
     public class StatsService : IStatsService
     {
-        private DatabaseContext _databaseContext;
-        private ITimeProvider _timeProvider;
+        private readonly DatabaseContext _databaseContext;
+        private readonly ITimeProvider _timeProvider;
 
         public StatsService(DatabaseContext databaseContext, ITimeProvider timeProvider)
         {
