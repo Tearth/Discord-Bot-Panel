@@ -26,7 +26,7 @@ namespace DiscordBotPanel.Backend.Services.Bots
             return _databaseContext.Bots.Any(p => p.Id == botId);
         }
 
-        public BotDTO GetBot(ulong botId)
+        public BotDto GetBot(ulong botId)
         {
             var botModel = _databaseContext.Bots.FirstOrDefault(p => p.Id == botId);
             if (botModel == null)
@@ -34,10 +34,10 @@ namespace DiscordBotPanel.Backend.Services.Bots
                 return null;
             }
 
-            return Mapper.Map<BotDTO>(botModel);
+            return Mapper.Map<BotDto>(botModel);
         }
 
-        public RegisterResult RegisterBot(RegisterBotDTO registerBotDto)
+        public RegisterResult RegisterBot(RegisterBotDto registerBotDto)
         {
             if (_databaseContext.Bots.Any(p => p.Id == registerBotDto.Id))
             {

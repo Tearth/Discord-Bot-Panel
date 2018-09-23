@@ -5,7 +5,7 @@ using System.Threading.Tasks;
 
 namespace DiscordBotPanel.Backend.DTO
 {
-    public class LogStatsDTO
+    public class LogStatsDto
     {
         public ulong BotId { get; set; }
         public int GuildsCount { get; set; }

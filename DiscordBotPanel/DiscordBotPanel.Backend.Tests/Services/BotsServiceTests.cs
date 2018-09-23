@@ -88,7 +88,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
             var timeProvider = TimeProviderFactory.Create();
             var botService = new BotsService(databaseContext, timeProvider);
 
-            var bot = new RegisterBotDTO
+            var bot = new RegisterBotDto
             {
                 Id = 1000,
                 Name = "Bot1"
@@ -119,7 +119,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
             });
             databaseContext.SaveChanges();
 
-            var bot = new RegisterBotDTO
+            var bot = new RegisterBotDto
             {
                 Id = 1000,
                 Name = "Bot1"

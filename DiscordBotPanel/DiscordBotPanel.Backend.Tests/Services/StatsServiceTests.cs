@@ -32,7 +32,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
             });
             databaseContext.SaveChanges();
 
-            var stats = new LogStatsDTO()
+            var stats = new LogStatsDto()
             {
                 BotId = 1,
                 ExecutedCommandsCount = 2,
@@ -59,7 +59,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
             var timeProvider = TimeProviderFactory.Create();
             var statsService = new StatsService(databaseContext, timeProvider);
 
-            var stats = new LogStatsDTO()
+            var stats = new LogStatsDto()
             {
                 BotId = 1,
                 ExecutedCommandsCount = 2,

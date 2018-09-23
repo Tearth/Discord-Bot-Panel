@@ -33,7 +33,7 @@ namespace DiscordBotPanel.Backend.Controllers
         }
 
         [HttpPost]
-        public ActionResult Log([FromBody] LogStatsDTO logStatsDto)
+        public ActionResult Log([FromBody] LogStatsDto logStatsDto)
         {
             if (!_statsService.Log(logStatsDto))
             {

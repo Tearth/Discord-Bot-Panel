@@ -35,7 +35,7 @@ namespace DiscordBotPanel.Backend.Controllers
         }
 
         [HttpPost]
-        public ActionResult RegisterBot([FromBody] RegisterBotDTO registerBotDto)
+        public ActionResult RegisterBot([FromBody] RegisterBotDto registerBotDto)
         {
             if (_botsService.IsBotRegistered(registerBotDto.Id))
             {

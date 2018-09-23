@@ -22,7 +22,7 @@ namespace DiscordBotPanel.Backend.Services.Stats
             _timeProvider = timeProvider;
         }
 
-        public bool Log(LogStatsDTO logStatsDto)
+        public bool Log(LogStatsDto logStatsDto)
         {
             if (!_databaseContext.Bots.Any(p => p.Id == logStatsDto.BotId))
             {
@@ -38,7 +38,7 @@ namespace DiscordBotPanel.Backend.Services.Stats
             return true;
         }
 
-        public List<LogStatsDTO> GetStatsForBot(ulong botId)
+        public List<LogStatsDto> GetStatsForBot(ulong botId)
         {
             var bot = _databaseContext.Bots.Include(p => p.Stats).FirstOrDefault(p => p.Id == botId);
             if (bot == null)
@@ -46,7 +46,7 @@ namespace DiscordBotPanel.Backend.Services.Stats
                 return null;
             }
 
-            return Mapper.Map<List<LogStatsDTO>>(bot.Stats);
+            return Mapper.Map<List<LogStatsDto>>(bot.Stats);
         }
     }
 }

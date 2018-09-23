@@ -8,7 +8,7 @@ namespace DiscordBotPanel.Backend.Services.Stats
 {
     public interface IStatsService
     {
-        bool Log(LogStatsDTO logStatsDto);
-        List<LogStatsDTO> GetStatsForBot(ulong botId);
+        bool Log(LogStatsDto logStatsDto);
+        List<LogStatsDto> GetStatsForBot(ulong botId);
     }
 }

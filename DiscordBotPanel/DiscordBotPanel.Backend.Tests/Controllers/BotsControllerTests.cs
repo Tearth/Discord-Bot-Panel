@@ -20,7 +20,7 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
             var botServiceMock = new Mock<IBotsService>();
             var timeProvider = TimeProviderFactory.Create();
 
-            botServiceMock.Setup(p => p.GetBot(1000)).Returns(new BotDTO
+            botServiceMock.Setup(p => p.GetBot(1000)).Returns(new BotDto
             {
                 Id = 1000,
                 Name = "Bot1",
@@ -31,14 +31,14 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
             var jsonResult = controller.GetBot(1000) as JsonResult;
 
             Assert.Null(jsonResult.StatusCode);
-            Assert.IsAssignableFrom<BotDTO>(jsonResult.Value);
+            Assert.IsAssignableFrom<BotDto>(jsonResult.Value);
         }
 
         [Fact]
         public void GetBot_NonExistingBotId_ShouldReturnNotFound()
         {
             var botServiceMock = new Mock<IBotsService>();
-            botServiceMock.Setup(p => p.GetBot(1000)).Returns((BotDTO)null);
+            botServiceMock.Setup(p => p.GetBot(1000)).Returns((BotDto)null);
 
             var controller = new BotsController(botServiceMock.Object);
             var result = controller.GetBot(1000);
@@ -50,7 +50,7 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
         public void RegisterBot_NonExistingId_ShouldReturnNoContent()
         {
             var botServiceMock = new Mock<IBotsService>();
-            var registerBotDto = new RegisterBotDTO
+            var registerBotDto = new RegisterBotDto
             {
                 Id = 1000,
                 Name = "Bot1"
@@ -69,7 +69,7 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
         public void RegisterBot_ExistingId_ShouldReturnBadRequest()
         {
             var botServiceMock = new Mock<IBotsService>();
-            var registerBotDto = new RegisterBotDTO
+            var registerBotDto = new RegisterBotDto
             {
                 Id = 1000,
                 Name = "Bot1"
