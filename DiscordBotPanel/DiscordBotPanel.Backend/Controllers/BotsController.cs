@@ -1,6 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
+using System.Net;
+using System.Net.Http;
 using System.Threading.Tasks;
 using DiscordBotPanel.Backend.DTO;
 using DiscordBotPanel.Backend.Services.Bots;
@@ -26,8 +28,7 @@ namespace DiscordBotPanel.Backend.Controllers
             var bot = _botsService.GetBot(botId);
             if (bot == null)
             {
-                Response.StatusCode = 404;
-                return Json(new RequestResultDTO(false, "No bot with this id."));
+                return new NotFoundResult();
             }
 
             return Json(bot);
@@ -38,17 +39,15 @@ namespace DiscordBotPanel.Backend.Controllers
         {
             if (_botsService.IsBotRegistered(registerBotDto.Id))
             {
-                Response.StatusCode = 404;
-                return Json(new RequestResultDTO(false, "Bot already registered."));
+                return new BadRequestResult();
             }
 
             if (_botsService.RegisterBot(registerBotDto) != RegisterResult.Success)
             {
-                Response.StatusCode = 404;
-                return Json(new RequestResultDTO(false, "Internal RegisterBot error."));
+                return new StatusCodeResult(500);
             }
 
-            return Json(new RequestResultDTO(true));
+            return new NoContentResult();
         }
     }
 }

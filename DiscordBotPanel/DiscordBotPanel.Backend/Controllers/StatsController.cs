@@ -26,8 +26,7 @@ namespace DiscordBotPanel.Backend.Controllers
             var stats = _statsService.GetStatsForBot(botId);
             if (stats == null)
             {
-                Response.StatusCode = 404;
-                return Json(new RequestResultDTO(false, "No bot with this id,"));
+                return new NotFoundResult();
             }
 
             return Json(stats);
@@ -38,11 +37,10 @@ namespace DiscordBotPanel.Backend.Controllers
         {
             if (!_statsService.Log(logStatsDto))
             {
-                Response.StatusCode = 404;
-                return Json(new RequestResultDTO(false, "Can't log data, check if bot is registered."));
+                return new BadRequestResult();
             }
 
-            return Json(new RequestResultDTO(true));
+            return new NoContentResult();
         }
     }
 }
