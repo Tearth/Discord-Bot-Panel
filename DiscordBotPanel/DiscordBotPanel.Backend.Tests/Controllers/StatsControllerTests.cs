@@ -1,12 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
+﻿using System.Collections.Generic;
 using DiscordBotPanel.Backend.Controllers;
-using DiscordBotPanel.Backend.DAL.Models;
 using DiscordBotPanel.Backend.DTO;
-using DiscordBotPanel.Backend.Services.Bots;
 using DiscordBotPanel.Backend.Services.Stats;
-using DiscordBotPanel.Backend.Tests.Helpers;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;
@@ -19,12 +14,6 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
         public void GetStatsForBot_ExistingBotId_ShouldReturnBotStats()
         {
             var statsServiceMock = new Mock<IStatsService>();
-            var registerBotDto = new RegisterBotDto
-            {
-                Id = 1000,
-                Name = "Bot1"
-            };
-
             statsServiceMock.Setup(p => p.GetStatsForBot(1000)).Returns(new List<LogStatsDto>
             {
                 new LogStatsDto {BotId=1000, ExecutedCommandsCount = 1, GuildsCount = 1, MembersCount = 1},

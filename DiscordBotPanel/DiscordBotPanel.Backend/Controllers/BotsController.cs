@@ -1,12 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Net;
-using System.Net.Http;
-using System.Threading.Tasks;
-using DiscordBotPanel.Backend.DTO;
+﻿using DiscordBotPanel.Backend.DTO;
 using DiscordBotPanel.Backend.Services.Bots;
-using Microsoft.AspNetCore.Http;
 using Microsoft.AspNetCore.Mvc;
 
 namespace DiscordBotPanel.Backend.Controllers

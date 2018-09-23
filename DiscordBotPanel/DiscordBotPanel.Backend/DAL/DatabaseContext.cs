@@ -1,8 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
-using DiscordBotPanel.Backend.DAL.Models;
+﻿using DiscordBotPanel.Backend.DAL.Models;
 using Microsoft.EntityFrameworkCore;
 
 namespace DiscordBotPanel.Backend.DAL

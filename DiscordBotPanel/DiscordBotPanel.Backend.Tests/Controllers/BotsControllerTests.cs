@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using DiscordBotPanel.Backend.Controllers;
+﻿using DiscordBotPanel.Backend.Controllers;
 using DiscordBotPanel.Backend.DTO;
 using DiscordBotPanel.Backend.Services.Bots;
 using DiscordBotPanel.Backend.Tests.Helpers;
-using Microsoft.AspNetCore.Http.Internal;
 using Microsoft.AspNetCore.Mvc;
 using Moq;
 using Xunit;

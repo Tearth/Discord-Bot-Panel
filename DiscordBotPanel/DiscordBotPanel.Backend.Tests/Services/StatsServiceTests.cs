@@ -1,10 +1,8 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Text;
 using DiscordBotPanel.Backend.DAL.Models;
 using DiscordBotPanel.Backend.DTO;
-using DiscordBotPanel.Backend.Services.Bots;
 using DiscordBotPanel.Backend.Services.Stats;
 using DiscordBotPanel.Backend.Tests.Helpers;
 using Xunit;
@@ -32,7 +30,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
             });
             databaseContext.SaveChanges();
 
-            var stats = new LogStatsDto()
+            var stats = new LogStatsDto
             {
                 BotId = 1,
                 ExecutedCommandsCount = 2,
@@ -59,7 +57,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
             var timeProvider = TimeProviderFactory.Create();
             var statsService = new StatsService(databaseContext, timeProvider);
 
-            var stats = new LogStatsDto()
+            var stats = new LogStatsDto
             {
                 BotId = 1,
                 ExecutedCommandsCount = 2,

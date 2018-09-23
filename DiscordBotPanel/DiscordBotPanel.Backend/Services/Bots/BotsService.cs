@@ -1,7 +1,4 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Threading.Tasks;
+﻿using System.Linq;
 using AutoMapper;
 using DiscordBotPanel.Backend.DAL;
 using DiscordBotPanel.Backend.DAL.Models;

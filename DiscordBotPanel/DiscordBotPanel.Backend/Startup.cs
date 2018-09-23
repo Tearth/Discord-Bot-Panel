@@ -1,11 +1,5 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Reflection;
-using System.Threading.Tasks;
-using AutoMapper;
+﻿using AutoMapper;
 using DiscordBotPanel.Backend.DAL;
-using DiscordBotPanel.Backend.DAL.Models;
 using DiscordBotPanel.Backend.Helpers.Time;
 using DiscordBotPanel.Backend.Services.Bots;
 using DiscordBotPanel.Backend.Services.Stats;
@@ -14,8 +8,6 @@ using Microsoft.AspNetCore.Hosting;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
-using Microsoft.Extensions.Logging;
-using Microsoft.Extensions.Options;
 using NLog;
 
 namespace DiscordBotPanel.Backend
