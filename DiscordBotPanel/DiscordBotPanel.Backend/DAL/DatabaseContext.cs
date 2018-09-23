@@ -8,11 +8,6 @@ namespace DiscordBotPanel.Backend.DAL
         public virtual DbSet<BotModel> Bots { get; set; }
         public virtual DbSet<StatsModel> Stats { get; set; }
 
-        public DatabaseContext()
-        {
-
-        }
-
         public DatabaseContext(DbContextOptions options) : base(options)
         {
 
@@ -20,12 +15,12 @@ namespace DiscordBotPanel.Backend.DAL
 
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
-            base.OnModelCreating(modelBuilder);
-        }
+            modelBuilder.Entity<BotModel>()
+                .HasMany(p => p.Stats)
+                .WithOne(p => p.Bot)
+                .IsRequired();
 
-        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
-        {
-            base.OnConfiguring(optionsBuilder);
+            base.OnModelCreating(modelBuilder);
         }
     }
 }
