@@ -84,19 +84,18 @@ namespace DiscordBotPanel.Backend.Tests.Services
                 Name = "Bot1",
                 Stats = new List<StatsModel>
                 {
-                    new StatsModel {BotId = 1, CreateTime = DateTime.Now, ExecutedCommandsCount = 1001 },
-                    new StatsModel {BotId = 1, CreateTime = DateTime.Now, ExecutedCommandsCount = 1002 },
-                    new StatsModel {BotId = 1, CreateTime = DateTime.Now, ExecutedCommandsCount = 1003 }
+                    new StatsModel {BotId = 1, CreateTime = timeProvider.Get(), ExecutedCommandsCount = 1001 },
+                    new StatsModel {BotId = 1, CreateTime = timeProvider.Get().AddDays(1), ExecutedCommandsCount = 1002 },
+                    new StatsModel {BotId = 1, CreateTime = timeProvider.Get().AddDays(1), ExecutedCommandsCount = 1003 }
                 }
             });
             databaseContext.SaveChanges();
 
             var result = statsService.GetStatsForBot(1);
 
-            Assert.Equal(3, result.Count);
+            Assert.Equal(2, result.Count);
             Assert.Equal(1001, result[0].ExecutedCommandsCount);
-            Assert.Equal(1002, result[1].ExecutedCommandsCount);
-            Assert.Equal(1003, result[2].ExecutedCommandsCount);
+            Assert.Equal(1003, result[1].ExecutedCommandsCount);
         }
 
         [Fact]

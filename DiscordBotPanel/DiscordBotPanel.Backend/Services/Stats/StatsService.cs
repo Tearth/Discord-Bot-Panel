@@ -38,13 +38,25 @@ namespace DiscordBotPanel.Backend.Services.Stats
 
         public List<LogStatsDto> GetStatsForBot(ulong botId)
         {
-            var bot = _databaseContext.Bots.Include(p => p.Stats).FirstOrDefault(p => p.Id == botId);
-            if (bot == null)
+            if (!_databaseContext.Bots.Any(p => p.Id == botId))
             {
                 return null;
             }
 
-            return Mapper.Map<List<LogStatsDto>>(bot.Stats);
+            var botStats = _databaseContext.Stats
+                .Where(p => p.BotId == botId)
+                .GroupBy(p => p.CreateTime.Date, (date, stats) => new LogStatsDto
+                {
+                    BotId = botId,
+                    CreateTime = date,
+                    GuildsCount = stats.Max(s => s.GuildsCount),
+                    MembersCount = stats.Max(s => s.MembersCount),
+                    ExecutedCommandsCount = stats.Max(s => s.ExecutedCommandsCount)
+                })
+                .OrderBy(p => p.CreateTime)
+                .ToList();
+
+            return Mapper.Map<List<LogStatsDto>>(botStats);
         }
     }
 }
