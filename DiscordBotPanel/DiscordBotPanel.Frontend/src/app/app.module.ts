@@ -3,10 +3,16 @@ import { NgModule } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
+import { GuildStatsComponent } from './guild-stats/guild-stats.component';
+import { MemberStatsComponent } from './member-stats/member-stats.component';
+import { CommandStatsComponent } from './command-stats/command-stats.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    GuildStatsComponent,
+    MemberStatsComponent,
+    CommandStatsComponent
   ],
   imports: [
     BrowserModule,
