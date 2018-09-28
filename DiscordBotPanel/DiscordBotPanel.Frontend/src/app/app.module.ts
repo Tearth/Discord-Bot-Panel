@@ -6,6 +6,8 @@ import { AppComponent } from './app.component';
 import { GuildStatsComponent } from './guild-stats/guild-stats.component';
 import { MemberStatsComponent } from './member-stats/member-stats.component';
 import { CommandStatsComponent } from './command-stats/command-stats.component';
+import { AppRoutingModule } from './/app-routing.module';
+import { RouterModule } from '@angular/router';
 
 @NgModule({
   declarations: [
@@ -16,7 +18,9 @@ import { CommandStatsComponent } from './command-stats/command-stats.component';
   ],
   imports: [
     BrowserModule,
-    ChartsModule
+    ChartsModule,
+    AppRoutingModule,
+    RouterModule
   ],
   providers: [],
   bootstrap: [AppComponent]
