@@ -15,6 +15,13 @@ namespace DiscordBotPanel.Backend.Controllers
             _botsService = botsService;
         }
 
+        [HttpGet]
+        public ActionResult GetAllBots()
+        {
+            var bots = _botsService.GetAllBots();
+            return Json(bots);
+        }
+
         [HttpGet("{botId}")]
         public ActionResult GetBot(ulong botId)
         {

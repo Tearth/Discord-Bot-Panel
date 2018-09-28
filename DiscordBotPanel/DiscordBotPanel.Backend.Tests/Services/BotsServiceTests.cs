@@ -46,7 +46,35 @@ namespace DiscordBotPanel.Backend.Tests.Services
         }
 
         [Fact]
-        public void GetBot_ExistingBot_ShuildReturnBotData()
+        public void GetAllBots_ExistingBots_ShouldReturnListOfBots()
+        {
+            var databaseContext = DatabaseFactory.Create();
+            var timeProvider = TimeProviderFactory.Create();
+            var botService = new BotsService(databaseContext, timeProvider);
+
+            databaseContext.Bots.Add(new BotModel
+            {
+                Id = 1000,
+                Name = "Bot1",
+                CreateTime = timeProvider.Get()
+            });
+            databaseContext.Bots.Add(new BotModel
+            {
+                Id = 1001,
+                Name = "Bot2",
+                CreateTime = timeProvider.Get()
+            });
+            databaseContext.SaveChanges();
+
+            var result = botService.GetAllBots();
+
+            Assert.Equal(2, result.Count);
+            Assert.Equal(1000ul, result[0].Id);
+            Assert.Equal(1001ul, result[1].Id);
+        }
+
+        [Fact]
+        public void GetBot_ExistingBot_ShouldReturnBotData()
         {
             var databaseContext = DatabaseFactory.Create();
             var timeProvider = TimeProviderFactory.Create();
@@ -68,7 +96,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
         }
 
         [Fact]
-        public void GetBot_NonExistingBot_ShuildReturnBotData()
+        public void GetBot_NonExistingBot_ShouldReturnBotData()
         {
             var databaseContext = DatabaseFactory.Create();
             var timeProvider = TimeProviderFactory.Create();

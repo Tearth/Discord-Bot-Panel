@@ -1,5 +1,7 @@
-﻿using System.Linq;
+﻿using System.Collections.Generic;
+using System.Linq;
 using AutoMapper;
+using AutoMapper.QueryableExtensions;
 using DiscordBotPanel.Backend.DAL;
 using DiscordBotPanel.Backend.DAL.Models;
 using DiscordBotPanel.Backend.DTO;
@@ -21,6 +23,11 @@ namespace DiscordBotPanel.Backend.Services.Bots
         public bool IsBotRegistered(ulong botId)
         {
             return _databaseContext.Bots.Any(p => p.Id == botId);
+        }
+
+        public List<BotDto> GetAllBots()
+        {
+            return Mapper.Map<List<BotDto>>(_databaseContext.Bots);
         }
 
         public BotDto GetBot(ulong botId)
