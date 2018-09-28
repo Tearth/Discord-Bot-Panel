@@ -119,7 +119,15 @@
         </div>
       </div>
       <div class="right_col" role="main">
-        
+        <canvas
+            baseChart
+            [chartType]="'line'"
+            [datasets]="chartData"
+            [labels]="chartLabels"
+            [options]="chartOptions"
+            [legend]="true"
+            (chartClick)="onChartClick($event)">
+        </canvas>
       </div>
       <footer>
         <div class="pull-right">
