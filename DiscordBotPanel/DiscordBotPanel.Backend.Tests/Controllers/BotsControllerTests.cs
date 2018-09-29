@@ -1,4 +1,5 @@
-﻿using DiscordBotPanel.Backend.Controllers;
+﻿using System.Collections.Generic;
+using DiscordBotPanel.Backend.Controllers;
 using DiscordBotPanel.Backend.DTO;
 using DiscordBotPanel.Backend.Services.Bots;
 using DiscordBotPanel.Backend.Tests.Helpers;
@@ -10,6 +11,22 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
 {
     public class BotsControllerTests
     {
+        [Fact]
+        public void GetAllBots_ExistingBots_ShouldReturnListOfBots()
+        {
+            var botServiceMock = new Mock<IBotsService>();
+            botServiceMock.Setup(p => p.GetAllBots()).Returns(new List<BotDto>
+            {
+                new BotDto { Id = 1000, Name = "Bot1" },
+                new BotDto { Id = 1001, Name = "Bot2" }
+            });
+
+            var controller = new BotsController(botServiceMock.Object);
+            var jsonResult = controller.GetAllBots() as JsonResult;
+
+            Assert.IsAssignableFrom<List<BotDto>>(jsonResult.Value);
+        }
+
         [Fact]
         public void GetBot_ExistingBotId_ShouldReturnValidBotData()
         {
@@ -26,7 +43,6 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
             var controller = new BotsController(botServiceMock.Object);
             var jsonResult = controller.GetBot(1000) as JsonResult;
 
-            Assert.Null(jsonResult.StatusCode);
             Assert.IsAssignableFrom<BotDto>(jsonResult.Value);
         }
 
