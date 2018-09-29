@@ -8,6 +8,9 @@ import { MemberStatsComponent } from './member-stats/member-stats.component';
 import { CommandStatsComponent } from './command-stats/command-stats.component';
 import { AppRoutingModule } from './/app-routing.module';
 import { RouterModule } from '@angular/router';
+import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
+import { IAppState, initialState, reducer } from './store';
+import { composeWithDevTools } from 'redux-devtools-extension';
 
 @NgModule({
   declarations: [
@@ -20,9 +23,15 @@ import { RouterModule } from '@angular/router';
     BrowserModule,
     ChartsModule,
     AppRoutingModule,
-    RouterModule
+    RouterModule,
+    NgReduxModule,
   ],
   providers: [],
   bootstrap: [AppComponent]
 })
-export class AppModule { }
+
+export class AppModule {
+  constructor (ngRedux: NgRedux<IAppState>, devTools: DevToolsExtension) {
+    ngRedux.configureStore(reducer, initialState, null, devTools.isEnabled() ? [ devTools.enhancer() ] : []);
+  }
+}

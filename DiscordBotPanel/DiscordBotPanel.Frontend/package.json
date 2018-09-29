@@ -11,6 +11,7 @@
   },
   "private": true,
   "dependencies": {
+    "@angular-redux/store": "^9.0.0",
     "@angular/animations": "^6.1.0",
     "@angular/common": "^6.1.0",
     "@angular/compiler": "^6.1.0",
@@ -29,6 +30,8 @@
     "ng-redux": "^4.1.0-alpha",
     "ng2-charts": "^1.6.0",
     "npm": "^6.4.1",
+    "redux": "^4.0.0",
+    "redux-devtools-extension": "^2.13.5",
     "rxjs": "^6.0.0",
     "zone.js": "~0.8.26"
   },
