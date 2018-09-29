@@ -26,6 +26,7 @@
     "font-awesome": "^4.7.0",
     "gentelella": "^1.4.0",
     "jquery": "^3.3.1",
+    "ng-redux": "^4.1.0-alpha",
     "ng2-charts": "^1.6.0",
     "npm": "^6.4.1",
     "rxjs": "^6.0.0",
