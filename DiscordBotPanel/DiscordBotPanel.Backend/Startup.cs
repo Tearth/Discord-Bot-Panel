@@ -35,6 +35,10 @@ namespace DiscordBotPanel.Backend
             services.AddScoped<IBotsService, BotsService>();
             services.AddScoped<IStatsService, StatsService>();
             services.AddScoped<ITimeProvider, TimeProvider>();
+            services.AddCors(o => o.AddPolicy("CorsPolicy", builder => builder
+                .AllowAnyOrigin()
+                .AllowAnyMethod()
+                .AllowAnyHeader()));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -57,6 +61,7 @@ namespace DiscordBotPanel.Backend
 
             Mapper.Initialize(cfg => cfg.AddProfiles(GetType().Assembly));
 
+            app.UseCors("CorsPolicy");
             app.UseMvc();
         }
     }
