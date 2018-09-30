@@ -13,7 +13,5 @@ export class GuildStatsComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.ngRedux.dispatch({ type: 'ADD_MESSAGE'});
-    alert(this.ngRedux.getState().counter);
   }
 }

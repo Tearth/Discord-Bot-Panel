@@ -11,13 +11,15 @@ import { RouterModule } from '@angular/router';
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { IAppState, initialState, reducer } from './store';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { GuildSelectComponent } from './guild-select/guild-select.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     GuildStatsComponent,
     MemberStatsComponent,
-    CommandStatsComponent
+    CommandStatsComponent,
+    GuildSelectComponent
   ],
   imports: [
     BrowserModule,
