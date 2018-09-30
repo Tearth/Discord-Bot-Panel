@@ -1,5 +1,5 @@
+import { IAppState } from './../../store';
 import { Component, OnInit } from '@angular/core';
-import { IAppState } from '../store';
 import { NgRedux } from '@angular-redux/store';
 
 @Component({
