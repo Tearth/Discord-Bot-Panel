@@ -11,7 +11,7 @@ export const initialState: IAppState = {
 export const reducer: Reducer<IAppState> =
   (state: IAppState, action: Action): IAppState => {
   switch (action.type) {
-  case 'ADD_MESSAGE':
+  case 'LOAD_BOTS':
     return {
       counter: 999
     };

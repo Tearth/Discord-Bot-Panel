@@ -1,10 +1,7 @@
 <div class="bot-select-container">
   <div class="form-group">
-    <select class="form-control" id="sel1">
-      <option>1</option>
-      <option>2</option>
-      <option>3</option>
-      <option>4</option>
+    <select class="form-control">
+      <option *ngFor="let bot of bots">{{bot.name}}</option>
     </select>
   </div>
 </div>

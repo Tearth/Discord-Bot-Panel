@@ -9,12 +9,10 @@ import { HttpClient } from 'selenium-webdriver/http';
 })
 export class BotsService {
   constructor(private api: ApiService) {
-    this.getGuilds().subscribe(data => {
-      console.log(JSON.stringify(data));
-    })
+
   }
 
-  private getGuilds() : Observable<BotModel[]> {
+  public getBots() : Observable<BotModel[]> {
     return this.api.get<BotModel[]>("bots");
   }
 }
