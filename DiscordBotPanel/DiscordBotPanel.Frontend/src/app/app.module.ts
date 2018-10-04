@@ -23,6 +23,7 @@ import { composeWithDevTools } from 'redux-devtools-extension';
     CommandStatsComponent,
     BotSelectComponent
   ],
+
   imports: [
     BrowserModule,
     ChartsModule,
@@ -31,12 +32,15 @@ import { composeWithDevTools } from 'redux-devtools-extension';
     NgReduxModule,
     HttpClientModule
   ],
-  providers: [
+
+  providers:
+  [
     {
-    provide: ErrorHandler,
-    useClass: GlobalErrorHandler
-  }
+      provide: ErrorHandler,
+      useClass: GlobalErrorHandler
+    }
   ],
+  
   bootstrap: [AppComponent]
 })
 

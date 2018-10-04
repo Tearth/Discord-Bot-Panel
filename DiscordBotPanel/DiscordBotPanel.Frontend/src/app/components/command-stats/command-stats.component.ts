@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./command-stats.component.css']
 })
 export class CommandStatsComponent implements OnInit {
+  constructor() {
 
-  constructor() { }
-
-  ngOnInit() {
   }
 
+  ngOnInit() {
+
+  }
 }

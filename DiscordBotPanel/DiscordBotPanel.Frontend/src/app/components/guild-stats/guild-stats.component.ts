@@ -8,10 +8,11 @@ import { NgRedux } from '@angular-redux/store';
   styleUrls: ['./guild-stats.component.css']
 })
 export class GuildStatsComponent implements OnInit {
-
   constructor(private ngRedux: NgRedux<IAppState>) {
+
   }
 
   ngOnInit() {
+    
   }
 }

@@ -6,10 +6,11 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./member-stats.component.css']
 })
 export class MemberStatsComponent implements OnInit {
+  constructor() {
 
-  constructor() { }
-
-  ngOnInit() {
   }
 
+  ngOnInit() {
+
+  }
 }
