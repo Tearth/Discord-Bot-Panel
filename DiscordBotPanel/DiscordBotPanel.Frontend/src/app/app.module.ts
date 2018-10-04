@@ -1,6 +1,7 @@
+import { GlobalErrorHandler } from './global-error-handler';
 import { BotSelectComponent } from './components/bot-select/bot-select.component';
 import { BrowserModule } from '@angular/platform-browser';
-import { NgModule } from '@angular/core';
+import { NgModule, ErrorHandler } from '@angular/core';
 import { ChartsModule } from 'ng2-charts';
 
 import { AppComponent } from './app.component';
@@ -30,7 +31,12 @@ import { composeWithDevTools } from 'redux-devtools-extension';
     NgReduxModule,
     HttpClientModule
   ],
-  providers: [],
+  providers: [
+    {
+    provide: ErrorHandler,
+    useClass: GlobalErrorHandler
+  }
+  ],
   bootstrap: [AppComponent]
 })
 
