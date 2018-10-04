@@ -1,4 +1,4 @@
-import { IAppState, LOAD_BOTS } from './../../store';
+import { IAppState, LOAD_BOTS, SELECT_BOT } from './../../store';
 import { BotModel } from './../../models/bot.model';
 import { BotsService } from './../../services/bots.service';
 import { Component, OnInit } from '@angular/core';
@@ -20,6 +20,10 @@ export class BotSelectComponent implements OnInit {
     this.botsService.getBots().subscribe((receivedBots: BotModel[]) => {
       this.bots = receivedBots;
       this.ngRedux.dispatch({ type: LOAD_BOTS, payload: receivedBots })
+
+      if(this.bots.length > 0) {
+        this.ngRedux.dispatch({ type: SELECT_BOT, payload: this.bots[0].id });
+      }
     });
   }
 }
