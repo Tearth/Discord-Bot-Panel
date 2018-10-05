@@ -4,7 +4,7 @@ namespace DiscordBotPanel.Backend.DAL.Models
 {
     public class StatsModel
     {
-        public string Id { get; set; }
+        public int Id { get; set; }
         public DateTime CreateTime { get; set; }
 
         public string BotId { get; set; }
