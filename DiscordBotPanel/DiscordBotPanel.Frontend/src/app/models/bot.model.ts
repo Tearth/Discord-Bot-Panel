@@ -1,5 +1,5 @@
 export class BotModel {
-    id: number;
+    id: string;
     createTime: Date;
     name: string;
 }

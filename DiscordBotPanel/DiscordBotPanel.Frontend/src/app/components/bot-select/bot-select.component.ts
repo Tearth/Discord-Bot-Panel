@@ -1,8 +1,10 @@
+import { StatsModel } from './../../models/stats.model';
 import { IAppState, LOAD_BOTS, SELECT_BOT } from './../../store';
 import { BotModel } from './../../models/bot.model';
 import { BotsService } from './../../services/bots.service';
 import { Component, OnInit } from '@angular/core';
 import { NgRedux } from '@angular-redux/store';
+import { StatsService } from '../../services/stats.service';
 
 @Component({
   selector: 'app-bot-select',
@@ -12,7 +14,9 @@ import { NgRedux } from '@angular-redux/store';
 export class BotSelectComponent implements OnInit {
   public bots: BotModel[];
 
-  constructor(private ngRedux: NgRedux<IAppState>, private botsService: BotsService) {
+  constructor(private ngRedux: NgRedux<IAppState>,
+              private botsService: BotsService,
+              private statsService: StatsService) {
 
   }
 
@@ -22,8 +26,15 @@ export class BotSelectComponent implements OnInit {
       this.ngRedux.dispatch({ type: LOAD_BOTS, payload: receivedBots })
 
       if(this.bots.length > 0) {
-        this.ngRedux.dispatch({ type: SELECT_BOT, payload: this.bots[0].id });
+        this.selectBot(this.bots[0].id);
       }
+    });
+  }
+
+  private selectBot(botId: string) {
+    this.ngRedux.dispatch({ type: SELECT_BOT, payload: botId });
+    this.statsService.getStatsForBot(botId).subscribe((stats: StatsModel[]) => {
+      console.log(JSON.stringify(stats));
     });
   }
 }
