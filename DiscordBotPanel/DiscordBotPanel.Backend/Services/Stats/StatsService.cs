@@ -36,7 +36,7 @@ namespace DiscordBotPanel.Backend.Services.Stats
             return true;
         }
 
-        public List<LogStatsDto> GetStatsForBot(ulong botId)
+        public List<LogStatsDto> GetStatsForBot(string botId)
         {
             if (!_databaseContext.Bots.Any(p => p.Id == botId))
             {

@@ -25,14 +25,14 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             databaseContext.Bots.Add(new BotModel
             {
-                Id = 1,
+                Id = "1",
                 Name = "Bot1"
             });
             databaseContext.SaveChanges();
 
             var stats = new LogStatsDto
             {
-                BotId = 1,
+                BotId = "1",
                 ExecutedCommandsCount = 2,
                 GuildsCount = 3,
                 MembersCount = 4
@@ -43,7 +43,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             Assert.True(result);
             Assert.Equal(1, databaseContext.Stats.Count());
-            Assert.Equal(1ul, loggedStats.BotId);
+            Assert.Equal("1", loggedStats.BotId);
             Assert.Equal(timeProvider.Get(), loggedStats.CreateTime);
             Assert.Equal(2, loggedStats.ExecutedCommandsCount);
             Assert.Equal(3, loggedStats.GuildsCount);
@@ -59,7 +59,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             var stats = new LogStatsDto
             {
-                BotId = 1,
+                BotId = "1",
                 ExecutedCommandsCount = 2,
                 GuildsCount = 3,
                 MembersCount = 4
@@ -80,18 +80,18 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             databaseContext.Bots.Add(new BotModel
             {
-                Id = 1,
+                Id = "1",
                 Name = "Bot1",
                 Stats = new List<StatsModel>
                 {
-                    new StatsModel {BotId = 1, CreateTime = timeProvider.Get(), ExecutedCommandsCount = 1001 },
-                    new StatsModel {BotId = 1, CreateTime = timeProvider.Get().AddDays(1), ExecutedCommandsCount = 1002 },
-                    new StatsModel {BotId = 1, CreateTime = timeProvider.Get().AddDays(1), ExecutedCommandsCount = 1003 }
+                    new StatsModel {BotId = "1", CreateTime = timeProvider.Get(), ExecutedCommandsCount = 1001 },
+                    new StatsModel {BotId = "1", CreateTime = timeProvider.Get().AddDays(1), ExecutedCommandsCount = 1002 },
+                    new StatsModel {BotId = "1", CreateTime = timeProvider.Get().AddDays(1), ExecutedCommandsCount = 1003 }
                 }
             });
             databaseContext.SaveChanges();
 
-            var result = statsService.GetStatsForBot(1);
+            var result = statsService.GetStatsForBot("1");
 
             Assert.Equal(2, result.Count);
             Assert.Equal(1001, result[0].ExecutedCommandsCount);
@@ -105,7 +105,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
             var timeProvider = TimeProviderFactory.Create();
             var statsService = new StatsService(databaseContext, timeProvider);
 
-            var result = statsService.GetStatsForBot(0);
+            var result = statsService.GetStatsForBot("0");
 
             Assert.Null(result);
         }

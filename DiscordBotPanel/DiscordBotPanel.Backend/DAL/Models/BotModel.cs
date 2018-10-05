@@ -5,7 +5,7 @@ namespace DiscordBotPanel.Backend.DAL.Models
 {
     public class BotModel
     {
-        public ulong Id { get; set; }
+        public string Id { get; set; }
         public DateTime CreateTime { get; set; }
         public string Name { get; set; }
 

@@ -14,15 +14,15 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
         public void GetStatsForBot_ExistingBotId_ShouldReturnBotStats()
         {
             var statsServiceMock = new Mock<IStatsService>();
-            statsServiceMock.Setup(p => p.GetStatsForBot(1000)).Returns(new List<LogStatsDto>
+            statsServiceMock.Setup(p => p.GetStatsForBot("1000")).Returns(new List<LogStatsDto>
             {
-                new LogStatsDto {BotId=1000, ExecutedCommandsCount = 1, GuildsCount = 1, MembersCount = 1},
-                new LogStatsDto {BotId=1000, ExecutedCommandsCount = 2, GuildsCount = 2, MembersCount = 2},
-                new LogStatsDto {BotId=1000, ExecutedCommandsCount = 3, GuildsCount = 3, MembersCount = 3}
+                new LogStatsDto {BotId="1000", ExecutedCommandsCount = 1, GuildsCount = 1, MembersCount = 1},
+                new LogStatsDto {BotId="1000", ExecutedCommandsCount = 2, GuildsCount = 2, MembersCount = 2},
+                new LogStatsDto {BotId="1000", ExecutedCommandsCount = 3, GuildsCount = 3, MembersCount = 3}
             });
 
             var controller = new StatsController(statsServiceMock.Object);
-            var jsonResult = controller.GetStatsForBot(1000) as JsonResult;
+            var jsonResult = controller.GetStatsForBot("1000") as JsonResult;
 
             Assert.IsAssignableFrom<List<LogStatsDto>>(jsonResult.Value);
         }
@@ -32,10 +32,10 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
         {
             var statsServiceMock = new Mock<IStatsService>();
 
-            statsServiceMock.Setup(p => p.GetStatsForBot(1000)).Returns((List<LogStatsDto>)null);
+            statsServiceMock.Setup(p => p.GetStatsForBot("1000")).Returns((List<LogStatsDto>)null);
 
             var controller = new StatsController(statsServiceMock.Object);
-            var result = controller.GetStatsForBot(1000);
+            var result = controller.GetStatsForBot("1000");
 
             Assert.IsAssignableFrom<NotFoundResult>(result);
         }
@@ -46,7 +46,7 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
             var statsServiceMock = new Mock<IStatsService>();
             var logStatsDto = new LogStatsDto
             {
-                BotId = 1000,
+                BotId = "1000",
                 ExecutedCommandsCount = 1,
                 GuildsCount = 2,
                 MembersCount = 3
@@ -66,7 +66,7 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
             var statsServiceMock = new Mock<IStatsService>();
             var logStatsDto = new LogStatsDto
             {
-                BotId = 1000,
+                BotId = "1000",
                 ExecutedCommandsCount = 1,
                 GuildsCount = 2,
                 MembersCount = 3

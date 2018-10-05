@@ -23,7 +23,7 @@ namespace DiscordBotPanel.Backend.Controllers
         }
 
         [HttpGet("{botId}")]
-        public ActionResult GetBot(ulong botId)
+        public ActionResult GetBot(string botId)
         {
             var bot = _botsService.GetBot(botId);
             if (bot == null)

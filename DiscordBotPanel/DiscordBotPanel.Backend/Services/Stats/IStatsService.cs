@@ -6,6 +6,6 @@ namespace DiscordBotPanel.Backend.Services.Stats
     public interface IStatsService
     {
         bool Log(LogStatsDto logStatsDto);
-        List<LogStatsDto> GetStatsForBot(ulong botId);
+        List<LogStatsDto> GetStatsForBot(string botId);
     }
 }

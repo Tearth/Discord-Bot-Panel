@@ -24,13 +24,13 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             databaseContext.Bots.Add(new BotModel
             {
-                Id = 1000,
+                Id = "1000",
                 Name = "Bot1",
                 CreateTime = DateTime.Now
             });
             databaseContext.SaveChanges();
 
-            var result = botService.IsBotRegistered(1000);
+            var result = botService.IsBotRegistered("1000");
             Assert.True(result);
         }
 
@@ -41,7 +41,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
             var timeProvider = TimeProviderFactory.Create();
             var botService = new BotsService(databaseContext, timeProvider);
 
-            var result = botService.IsBotRegistered(1000);
+            var result = botService.IsBotRegistered("1000");
             Assert.False(result);
         }
 
@@ -54,13 +54,13 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             databaseContext.Bots.Add(new BotModel
             {
-                Id = 1000,
+                Id = "1000",
                 Name = "Bot1",
                 CreateTime = timeProvider.Get()
             });
             databaseContext.Bots.Add(new BotModel
             {
-                Id = 1001,
+                Id = "1001",
                 Name = "Bot2",
                 CreateTime = timeProvider.Get()
             });
@@ -69,8 +69,8 @@ namespace DiscordBotPanel.Backend.Tests.Services
             var result = botService.GetAllBots();
 
             Assert.Equal(2, result.Count);
-            Assert.Equal(1000ul, result[0].Id);
-            Assert.Equal(1001ul, result[1].Id);
+            Assert.Equal("1000", result[0].Id);
+            Assert.Equal("1001", result[1].Id);
         }
 
         [Fact]
@@ -82,15 +82,15 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             databaseContext.Bots.Add(new BotModel
             {
-                Id = 1000,
+                Id = "1000",
                 Name = "Bot1",
                 CreateTime = timeProvider.Get()
             });
             databaseContext.SaveChanges();
 
-            var result = botService.GetBot(1000);
+            var result = botService.GetBot("1000");
 
-            Assert.Equal(1000ul, result.Id);
+            Assert.Equal("1000", result.Id);
             Assert.Equal("Bot1", result.Name);
             Assert.Equal(timeProvider.Get(), result.CreateTime);
         }
@@ -102,7 +102,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
             var timeProvider = TimeProviderFactory.Create();
             var botService = new BotsService(databaseContext, timeProvider);
 
-            var result = botService.GetBot(1000);
+            var result = botService.GetBot("1000");
 
             Assert.Null(result);
         }
@@ -116,7 +116,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             var bot = new RegisterBotDto
             {
-                Id = 1000,
+                Id = "1000",
                 Name = "Bot1"
             };
 
@@ -125,7 +125,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             Assert.Equal(RegisterResult.Success, result);
             Assert.Equal(1, databaseContext.Bots.Count());
-            Assert.Equal(1000ul, registeredBot.Id);
+            Assert.Equal("1000", registeredBot.Id);
             Assert.Equal("Bot1", registeredBot.Name);
             Assert.Equal(timeProvider.Get(), registeredBot.CreateTime);
         }
@@ -139,7 +139,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             databaseContext.Bots.Add(new BotModel
             {
-                Id = 1000,
+                Id = "1000",
                 Name = "Some other bot",
                 CreateTime = DateTime.Now
             });
@@ -147,7 +147,7 @@ namespace DiscordBotPanel.Backend.Tests.Services
 
             var bot = new RegisterBotDto
             {
-                Id = 1000,
+                Id = "1000",
                 Name = "Bot1"
             };
 

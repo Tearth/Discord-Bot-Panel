@@ -16,7 +16,7 @@ namespace DiscordBotPanel.Backend.Controllers
         }
 
         [HttpGet("{botId}")]
-        public ActionResult GetStatsForBot(ulong botId)
+        public ActionResult GetStatsForBot(string botId)
         {
             var stats = _statsService.GetStatsForBot(botId);
             if (stats == null)

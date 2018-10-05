@@ -17,8 +17,8 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
             var botServiceMock = new Mock<IBotsService>();
             botServiceMock.Setup(p => p.GetAllBots()).Returns(new List<BotDto>
             {
-                new BotDto { Id = 1000, Name = "Bot1" },
-                new BotDto { Id = 1001, Name = "Bot2" }
+                new BotDto { Id = "1000", Name = "Bot1" },
+                new BotDto { Id = "1001", Name = "Bot2" }
             });
 
             var controller = new BotsController(botServiceMock.Object);
@@ -33,15 +33,15 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
             var botServiceMock = new Mock<IBotsService>();
             var timeProvider = TimeProviderFactory.Create();
 
-            botServiceMock.Setup(p => p.GetBot(1000)).Returns(new BotDto
+            botServiceMock.Setup(p => p.GetBot("1000")).Returns(new BotDto
             {
-                Id = 1000,
+                Id = "1000",
                 Name = "Bot1",
                 CreateTime = timeProvider.Get()
             });
 
             var controller = new BotsController(botServiceMock.Object);
-            var jsonResult = controller.GetBot(1000) as JsonResult;
+            var jsonResult = controller.GetBot("1000") as JsonResult;
 
             Assert.IsAssignableFrom<BotDto>(jsonResult.Value);
         }
@@ -50,10 +50,10 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
         public void GetBot_NonExistingBotId_ShouldReturnNotFound()
         {
             var botServiceMock = new Mock<IBotsService>();
-            botServiceMock.Setup(p => p.GetBot(1000)).Returns((BotDto)null);
+            botServiceMock.Setup(p => p.GetBot("1000")).Returns((BotDto)null);
 
             var controller = new BotsController(botServiceMock.Object);
-            var result = controller.GetBot(1000);
+            var result = controller.GetBot("1000");
 
             Assert.IsAssignableFrom<NotFoundResult>(result);
         }
@@ -64,11 +64,11 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
             var botServiceMock = new Mock<IBotsService>();
             var registerBotDto = new RegisterBotDto
             {
-                Id = 1000,
+                Id = "1000",
                 Name = "Bot1"
             };
 
-            botServiceMock.Setup(p => p.IsBotRegistered(1000)).Returns(false);
+            botServiceMock.Setup(p => p.IsBotRegistered("1000")).Returns(false);
             botServiceMock.Setup(p => p.RegisterBot(registerBotDto)).Returns(RegisterResult.Success);
 
             var controller = new BotsController(botServiceMock.Object);
@@ -83,11 +83,11 @@ namespace DiscordBotPanel.Backend.Tests.Controllers
             var botServiceMock = new Mock<IBotsService>();
             var registerBotDto = new RegisterBotDto
             {
-                Id = 1000,
+                Id = "1000",
                 Name = "Bot1"
             };
 
-            botServiceMock.Setup(p => p.IsBotRegistered(1000)).Returns(true);
+            botServiceMock.Setup(p => p.IsBotRegistered("1000")).Returns(true);
 
             var controller = new BotsController(botServiceMock.Object);
             var result = controller.RegisterBot(registerBotDto);

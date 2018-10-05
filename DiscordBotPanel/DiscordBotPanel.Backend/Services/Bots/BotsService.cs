@@ -20,7 +20,7 @@ namespace DiscordBotPanel.Backend.Services.Bots
             _timeProvider = timeProvider;
         }
 
-        public bool IsBotRegistered(ulong botId)
+        public bool IsBotRegistered(string botId)
         {
             return _databaseContext.Bots.Any(p => p.Id == botId);
         }
@@ -30,7 +30,7 @@ namespace DiscordBotPanel.Backend.Services.Bots
             return Mapper.Map<List<BotDto>>(_databaseContext.Bots);
         }
 
-        public BotDto GetBot(ulong botId)
+        public BotDto GetBot(string botId)
         {
             var botModel = _databaseContext.Bots.FirstOrDefault(p => p.Id == botId);
             if (botModel == null)
