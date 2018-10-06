@@ -1,3 +1,10 @@
-<p>
-  guild-stats works!
-</p>
+<div style="width: 100%;" *ngIf="dataReady">
+  <canvas
+      baseChart
+      [chartType]="'line'"
+      [datasets]="chartData"
+      [labels]="chartLabels"
+      [options]="chartOptions"
+      [legend]="true">
+  </canvas>
+</div>

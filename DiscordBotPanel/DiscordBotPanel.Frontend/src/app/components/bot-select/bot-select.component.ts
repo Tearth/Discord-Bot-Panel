@@ -1,5 +1,5 @@
 import { StatsModel } from './../../models/stats.model';
-import { IAppState, LOAD_BOTS, SELECT_BOT } from './../../store';
+import { IAppState, LOAD_BOTS, SELECT_BOT, LOAD_STATS } from './../../store';
 import { BotModel } from './../../models/bot.model';
 import { BotsService } from './../../services/bots.service';
 import { Component, OnInit } from '@angular/core';
@@ -34,7 +34,7 @@ export class BotSelectComponent implements OnInit {
   private selectBot(botId: string) {
     this.ngRedux.dispatch({ type: SELECT_BOT, payload: botId });
     this.statsService.getStatsForBot(botId).subscribe((stats: StatsModel[]) => {
-      console.log(JSON.stringify(stats));
+      this.ngRedux.dispatch({ type: LOAD_STATS, payload: stats })
     });
   }
 }
