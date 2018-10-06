@@ -5,6 +5,7 @@ import { tassign } from 'tassign';
 import { TrendService } from '../../services/trend.service';
 import { ActivatedRoute } from '@angular/router';
 import { BaseChartDirective } from 'ng2-charts';
+import { StatsModel } from '../../models/stats.model';
 
 @Component({
   selector: 'app-stats',
@@ -12,15 +13,18 @@ import { BaseChartDirective } from 'ng2-charts';
   styleUrls: ['./stats.component.css']
 })
 export class StatsComponent implements OnInit {
-  @ViewChild(BaseChartDirective)
-  public chart: BaseChartDirective;
-
   public chartOptions;
   public chartData;
   public chartLabels: string[];
 
+  private modeLabels: any[];
+
   constructor(private activeRoute: ActivatedRoute, private ngRedux: NgRedux<IAppState>, private trendService: TrendService) {
-    
+    this.modeLabels = [
+      { name: "guilds", label: "Guilds count" },
+      { name: "members", label: "Members count" },
+      { name: "commands", label: "Commands count" }
+    ]
   }
 
   ngOnInit() {
@@ -28,12 +32,12 @@ export class StatsComponent implements OnInit {
       responsive: true
     };
 
-    this.activeRoute.params.subscribe(fragment => {
-      this.updateChart();
+    this.activeRoute.params.subscribe(params => {
+      this.updateChart(params.mode);
     });
   }
 
-  updateChart() {
+  updateChart(mode: string) {
     var stats = this.ngRedux.getState().stats;
 
     this.chartLabels = null;
@@ -42,10 +46,20 @@ export class StatsComponent implements OnInit {
     this.chartLabels = stats.map(p => new Date(p.createTime).toLocaleDateString());
     this.chartData = [
       {
-        data: stats.map(p => p.guildsCount), label: "Guilds count"
+        data: this.getDataForMode(mode, stats), label: this.modeLabels.find(p => p.name == mode).label
       },
       {
-        data: this.trendService.getTrendLineValues(stats.map(p => p.guildsCount)), label: "Trend line"
+        data: this.trendService.getTrendLineValues(this.getDataForMode(mode, stats)), label: "Trend line"
       }];
+  }
+
+  getDataForMode(mode: string, stats: StatsModel[]) {
+    switch(mode) {
+      case 'guilds': return stats.map(p => p.guildsCount);
+      case 'members': return stats.map(p => p.membersCount);
+      case 'commands': return stats.map(p => p.executedCommandsCount);
+    }
+
+    return [];
   }
 }
