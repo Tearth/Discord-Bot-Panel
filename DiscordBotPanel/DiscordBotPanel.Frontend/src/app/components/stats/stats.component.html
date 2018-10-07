@@ -1,15 +1,18 @@
 <div class="row tile_count">
-  <app-subpanel [title]="'Guilds'"
+  <app-subpanel [icon]="'fa-building'"
+                [title]="'Guilds'"
                 [count]="guildsCount"
                 [changeFromLastMonth]="guildsCountChangeFromLastMonth"
                 [changeFromLastMonthPercent]="guildsCountChangeFromLastMonthPercent"></app-subpanel>
 
-  <app-subpanel [title]="'Members'"
+  <app-subpanel [icon]="'fa-user'"
+                [title]="'Members'"
                 [count]="membersCount"
                 [changeFromLastMonth]="membersCountChangeFromLastMonth"
                 [changeFromLastMonthPercent]="membersCountChangeFromLastMonthPercent"></app-subpanel>
 
-  <app-subpanel [title]="'Commands'"
+  <app-subpanel [icon]="'fa-terminal'"
+                [title]="'Commands'"
                 [count]="commandsCount"
                 [changeFromLastMonth]="commandsCountChangeFromLastMonth"
                 [changeFromLastMonthPercent]="commandsCountChangeFromLastMonthPercent"></app-subpanel>

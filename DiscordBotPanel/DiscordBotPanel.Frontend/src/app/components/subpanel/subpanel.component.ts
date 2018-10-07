@@ -7,6 +7,9 @@ import { Component, OnInit, Input } from '@angular/core';
 })
 export class SubpanelComponent implements OnInit {
   @Input()
+  public icon: string;
+
+  @Input()
   public title: string;
 
   @Input()
@@ -19,7 +22,7 @@ export class SubpanelComponent implements OnInit {
   public changeFromLastMonthPercent: number;
 
   constructor() {
-    
+
   }
 
   ngOnInit() {
