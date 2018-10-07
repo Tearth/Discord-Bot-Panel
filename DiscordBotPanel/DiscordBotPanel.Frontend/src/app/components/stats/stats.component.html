@@ -1,4 +1,21 @@
-<div style="width: 100%;">
+<div class="row tile_count">
+  <app-subpanel [title]="'Guilds'"
+                [count]="guildsCount"
+                [changeFromLastMonth]="guildsCountChangeFromLastMonth"
+                [changeFromLastMonthPercent]="guildsCountChangeFromLastMonthPercent"></app-subpanel>
+
+  <app-subpanel [title]="'Members'"
+                [count]="membersCount"
+                [changeFromLastMonth]="membersCountChangeFromLastMonth"
+                [changeFromLastMonthPercent]="membersCountChangeFromLastMonthPercent"></app-subpanel>
+
+  <app-subpanel [title]="'Commands'"
+                [count]="commandsCount"
+                [changeFromLastMonth]="commandsCountChangeFromLastMonth"
+                [changeFromLastMonthPercent]="commandsCountChangeFromLastMonthPercent"></app-subpanel>
+</div>
+
+<div class="row">
   <canvas
       baseChart
       [chartType]="'line'"

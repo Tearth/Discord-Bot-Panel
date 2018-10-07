@@ -12,12 +12,14 @@ import { HttpClientModule } from '@angular/common/http';
 import { NgRedux, NgReduxModule, DevToolsExtension } from '@angular-redux/store';
 import { IAppState, initialState, reducer } from './store';
 import { composeWithDevTools } from 'redux-devtools-extension';
+import { SubpanelComponent } from './components/subpanel/subpanel.component';
 
 @NgModule({
   declarations: [
     AppComponent,
     StatsComponent,
-    BotSelectComponent
+    BotSelectComponent,
+    SubpanelComponent
   ],
 
   imports: [

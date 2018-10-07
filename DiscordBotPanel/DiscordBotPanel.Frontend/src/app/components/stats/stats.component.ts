@@ -17,6 +17,19 @@ export class StatsComponent implements OnInit {
   public chartData;
   public chartLabels: string[];
 
+  public guildsCount: number;
+  public membersCount: number;
+  public commandsCount: number;
+
+  public guildsCountChangeFromLastMonth: number;
+  public guildsCountChangeFromLastMonthPercent: number;
+
+  public membersCountChangeFromLastMonth: number;
+  public membersCountChangeFromLastMonthPercent: number;
+
+  public commandsCountChangeFromLastMonth: number;
+  public commandsCountChangeFromLastMonthPercent: number;
+
   private modeLabels: any[];
 
   constructor(private activeRoute: ActivatedRoute, private ngRedux: NgRedux<IAppState>, private trendService: TrendService) {
@@ -24,7 +37,20 @@ export class StatsComponent implements OnInit {
       { name: "guilds", label: "Guilds count" },
       { name: "members", label: "Members count" },
       { name: "commands", label: "Commands count" }
-    ]
+    ];
+
+    this.guildsCount = 0;
+    this.membersCount = 0;
+    this.commandsCount = 0;
+
+    this.guildsCountChangeFromLastMonth = 0;
+    this.guildsCountChangeFromLastMonthPercent = 0;
+
+    this.membersCountChangeFromLastMonth = 0;
+    this.membersCountChangeFromLastMonthPercent = 0;
+
+    this.commandsCountChangeFromLastMonth = 0;
+    this.commandsCountChangeFromLastMonthPercent = 0;
   }
 
   ngOnInit() {
@@ -42,6 +68,24 @@ export class StatsComponent implements OnInit {
 
     this.chartLabels = null;
     this.chartData = null;
+
+    if(stats.length > 0) {
+      var last = stats[stats.length - 1];
+      var monthAgo = stats[stats.length - 30 - 1]; 
+
+      this.guildsCount = last.guildsCount;
+      this.membersCount = last.membersCount;
+      this.commandsCount = last.executedCommandsCount;
+
+      this.guildsCountChangeFromLastMonth = this.guildsCount - monthAgo.guildsCount;
+      this.guildsCountChangeFromLastMonthPercent = (this.guildsCount * 100 / monthAgo.guildsCount) - 100;
+
+      this.membersCountChangeFromLastMonth = this.membersCount - monthAgo.membersCount;
+      this.membersCountChangeFromLastMonthPercent = (this.membersCount * 100 / monthAgo.membersCount) - 100;
+
+      this.commandsCountChangeFromLastMonth = this.commandsCount - monthAgo.executedCommandsCount;
+      this.commandsCountChangeFromLastMonthPercent = (this.commandsCount * 100 / monthAgo.executedCommandsCount) - 100;
+    }
 
     this.chartLabels = stats.map(p => new Date(p.createTime).toLocaleDateString());
     this.chartData = [
