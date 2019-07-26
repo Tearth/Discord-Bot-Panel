@@ -4,7 +4,7 @@ import { RouterModule, Routes } from '@angular/router';
 import { StatsComponent } from './components/stats/stats.component';
 
 const routes: Routes = [
-  { path: 'stats/:mode', component: StatsComponent },
+  { path: 'stats', component: StatsComponent },
 ];
 
 @NgModule({

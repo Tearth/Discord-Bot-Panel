@@ -39,6 +39,8 @@ export class StatsComponent implements OnInit {
       { name: "commands", label: "Commands count" }
     ];
 
+    this.chartData = [{ data: [] }, { data: [] }];
+
     this.guildsCount = 0;
     this.membersCount = 0;
     this.commandsCount = 0;
@@ -58,14 +60,20 @@ export class StatsComponent implements OnInit {
       responsive: true
     };
 
-    this.activeRoute.params.subscribe(params => {
-      this.updateChart(params.mode);
+    this.activeRoute.fragment.subscribe(params => {
+      this.updateChart(params);
     });
   }
 
   updateChart(mode: string) {
     var stats = this.ngRedux.getState().stats;
-
+    console.log("a");
+    
+    if(stats.length == 0) {
+      setTimeout(() => { this.updateChart(mode); }, 50);
+      return;
+    }
+    
     this.chartLabels = null;
     this.chartData = null;
 
