@@ -28,7 +28,7 @@ export class TrendService {
 
     var trendLineValues = [];
     for(var x of domain) {
-      trendLineValues.push(Math.max(0, (a * x) + b));
+      trendLineValues.push(Math.max(0, Math.round(((a * x) + b) * 10) / 10));
     }
 
     return trendLineValues;

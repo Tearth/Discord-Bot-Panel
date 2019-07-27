@@ -67,7 +67,6 @@ export class StatsComponent implements OnInit {
 
   updateChart(mode: string) {
     var stats = this.ngRedux.getState().stats;
-    console.log("a");
     
     if(stats.length == 0) {
       setTimeout(() => { this.updateChart(mode); }, 50);
@@ -95,13 +94,23 @@ export class StatsComponent implements OnInit {
       this.commandsCountChangeFromLastMonthPercent = (this.commandsCount * 100 / monthAgo.executedCommandsCount) - 100;
     }
 
-    this.chartLabels = stats.map(p => new Date(p.createTime).toLocaleDateString());
+    var count = 100;
+    var nth = stats.length / count;
+    var reducedStats = [];
+
+    for(var i = 0; i < count + 1; i++) {
+      reducedStats.push(stats[Math.min(stats.length - 1, Math.round(i * nth))]);
+    }
+
+    this.chartLabels = reducedStats.map(p => new Date(p.createTime).toLocaleDateString());
     this.chartData = [
       {
-        data: this.getDataForMode(mode, stats), label: this.modeLabels.find(p => p.name == mode).label
+        label: this.modeLabels.find(p => p.name == mode).label,
+        data: this.getDataForMode(mode, reducedStats),
       },
       {
-        data: this.trendService.getTrendLineValues(this.getDataForMode(mode, stats)), label: "Trend line"
+        label: "Trend line",
+        data: this.trendService.getTrendLineValues(this.getDataForMode(mode, reducedStats)),
       }];
   }
 

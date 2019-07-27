@@ -6,7 +6,7 @@ import { Observable } from 'rxjs';
   providedIn: 'root'
 })
 export class ApiService {
-    private apiUrl: string = "http://localhost:4000/api/";
+    private apiUrl: string = "https://discord.tearth.dev:4000/api/";
 
     constructor(private http: HttpClient) {
 
